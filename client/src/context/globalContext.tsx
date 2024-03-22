@@ -8,10 +8,22 @@ const GlobalContextProvider: React.FC<{ children: React.ReactNode }> = ({
   const user = { name: "john" };
 
   const [showSidebar, setShowSidebar] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  // Retrieve the value from localStorage
+  const storedDarkTheme = localStorage.getItem("darkTheme");
+
+  // Parse the stored value, or set a default if it's null
+  const initialDarkTheme = storedDarkTheme
+    ? JSON.parse(storedDarkTheme)
+    : false;
+
+  // Use useState to set the state
+  const [isDarkTheme, setIsDarkTheme] = useState(initialDarkTheme);
 
   const toggleDarkTheme = () => {
-    console.log("toggle dark theme");
+    const newDarkTheme = !isDarkTheme;
+    setIsDarkTheme(newDarkTheme);
+    document.body.classList.toggle("dark-theme", newDarkTheme);
+    localStorage.setItem("darkTheme", newDarkTheme.toString());
   };
 
   const toggleSidebar = () => {

@@ -10,6 +10,8 @@ import Wrapper from "../assets/wrappers/Dashboard";
 import { NavBar, BigSidebar, SmallSidebar } from "../components";
 
 const DashboardLayout = () => {
+  //const [isDarkTheme, setIsDarkTheme] = useState(isDarkThemeEnabled);
+
   return (
     <Wrapper>
       <main className="dashboard">
